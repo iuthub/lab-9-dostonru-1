@@ -12,9 +12,8 @@ class PostController extends Controller
 {
     public function getIndex(Store $session)
     {
-        $post = new Post();
-        $posts = $post->getPosts($session);
-        return view('blog.index', ['posts' => $posts]);
+        $posts=Post::orderBy('created_at','desc')->get();
+        return view('blog.index',['posts' => $posts]);
     }
 
     public function getAdminIndex(Store $session)
@@ -26,8 +25,7 @@ class PostController extends Controller
 
     public function getPost(Store $session, $id)
     {
-        $post = new Post();
-        $post = $post->getPost($session, $id);
+        $post = Post::where('id', $id)->first();
         return view('blog.post', ['post' => $post]);
     }
 
@@ -38,8 +36,7 @@ class PostController extends Controller
 
     public function getAdminEdit(Store $session, $id)
     {
-        $post = new Post();
-        $post = $post->getPost($session, $id);
+        $post Post::find($id);
         return view('admin.edit', ['post' => $post, 'postId' => $id]);
     }
 

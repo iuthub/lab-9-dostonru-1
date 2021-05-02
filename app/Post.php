@@ -2,12 +2,7 @@
 
 namespace App;
 
-class Post
+class Post extends Model
 {
-    protected $fillable = [
-        'title','content'
-    ];
-    
-    $session->put('posts', $posts);
-    
+    protected $fillable = [’ title ’, ’ content ’];
 }
